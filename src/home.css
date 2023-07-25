@@ -1,0 +1,111 @@
+.root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+	background-image: url("./Images/background.jpg");
+}
+
+.main {
+	width: fit-content;
+	justify-content: center;
+}
+
+.leftBox {
+	width: 350px;
+	height: 400px;
+	background-color: #0087f3 !important;
+}
+
+.leftBox2 {
+	width: 350px;
+	height: 400px;
+	position: relative;
+	background-color: #2d3237 !important;
+	opacity: 0.9;
+	bottom: 20px;
+	right: 20px;
+	overflow: hidden;
+}
+
+.resultBox {
+	min-height: 50px;
+	padding: 10px;
+}
+
+.equationBox {
+	min-height: 50px;
+	display: flex;
+	align-items: center;
+	background-image: linear-gradient(to left, #131516, #212325);
+	padding: 10px;
+}
+
+.historyBox {
+	padding: 10px;
+}
+
+.historyItmBox {
+	display: flex;
+	flex-direction: column;
+
+	height: 180px;
+	overflow-y: scroll;
+}
+
+.historyItem {
+	min-height: 30px;
+	padding: 5px 10px;
+	margin-top: 5px;
+	display: flex;
+	align-items: center;
+	background-image: linear-gradient(to left, #131516, #212325);
+}
+
+.rightBox {
+	display: flex;
+	width: 350px !important;
+	height: 400px;
+}
+
+.numBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+	height: 100%;
+}
+.numBtn:hover {
+	background-color: rgb(246, 246, 246);
+}
+
+.actionBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+	/* padding: 25px; */
+}
+
+.equalBtn:hover {
+	background-color: #2f98ef !important;
+}
+
+.actionBtn:hover {
+	background-color: #edf4ff;
+}
+
+@media (max-width: 750px) {
+	.leftBox2 {
+		bottom: 0;
+		top: 0;
+		left: 0;
+		right: 0;
+	}
+	.rightBox {
+		width: 80%;
+		height: 200px;
+	}
+}
