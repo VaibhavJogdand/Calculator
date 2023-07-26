@@ -9,6 +9,9 @@ const theme = createTheme({
 		secondary: {
 			main: "#F5F5F5", // Customize secondary color
 		},
+		danger: {
+			main: "#B31312",
+		},
 	},
 	typography: {
 		h5: {
