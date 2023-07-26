@@ -17,6 +17,8 @@ function Home() {
 	const [result, setResult] = useState();
 	const [equation, setEquation] = useState("");
 	const [history, setHistory] = useState([]);
+	const [historyLoading, setHistoryLoading] = useState(false);
+	const [deleteLoading, setDeleteLoading] = useState("");
 
 	// Function to handle user input and update the equation state
 	const handleInput = (input) => {
@@ -25,18 +27,25 @@ function Home() {
 	};
 
 	const getHistory = () => {
+		setDeleteLoading("");
 		Axios.get("/history")
-			.then((response) => setHistory(response.data))
+			.then((response) => {
+				setHistory(response.data);
+				setHistoryLoading(false);
+			})
 			.catch((error) => {});
 	};
 
 	const deleteHistory = (id) => {
+		setDeleteLoading(id);
 		Axios.delete(`/history/${id}`)
 			.then((response) => getHistory())
 			.catch((error) => {});
 	};
 
 	const clearHistory = (id) => {
+		setDeleteLoading("all");
+
 		Axios.delete("/history")
 			.then((response) => {
 				getHistory();
@@ -46,6 +55,7 @@ function Home() {
 	};
 
 	useEffect(() => {
+		setHistoryLoading(true);
 		getHistory();
 	}, []);
 
@@ -55,6 +65,8 @@ function Home() {
 			let tempResult = eval(equation);
 
 			setResult(tempResult);
+
+			setHistoryLoading(true);
 
 			Axios.post("/history", { equation, result: tempResult })
 				.then((response) => {
@@ -93,6 +105,8 @@ function Home() {
 						deleteHistory={deleteHistory}
 						clearHistory={clearHistory}
 						history={history}
+						historyLoading={historyLoading}
+						deleteLoading={deleteLoading}
 					/>
 				</Grid>
 				<Grid item>

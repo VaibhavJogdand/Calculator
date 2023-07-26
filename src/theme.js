@@ -10,7 +10,10 @@ const theme = createTheme({
 			main: "#F5F5F5", // Customize secondary color
 		},
 		danger: {
-			main: "#B31312",
+			main: "#F24C3D",
+		},
+		gray: {
+			main: "#808080",
 		},
 	},
 	typography: {

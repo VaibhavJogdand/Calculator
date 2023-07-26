@@ -11,6 +11,8 @@ function Screen({
 	deleteHistory,
 	clearHistory,
 	history,
+	historyLoading,
+	deleteLoading,
 }) {
 	return (
 		<div>
@@ -47,6 +49,8 @@ function Screen({
 						history={history}
 						deleteHistory={deleteHistory}
 						clearHistory={clearHistory}
+						historyLoading={historyLoading}
+						deleteLoading={deleteLoading}
 					/>
 				</Paper>
 			</Paper>

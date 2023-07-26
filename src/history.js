@@ -1,11 +1,24 @@
-import { Box, Divider, IconButton, Typography } from "@mui/material";
+import "./home.css";
+import {
+	Box,
+	CircularProgress,
+	Divider,
+	IconButton,
+	LinearProgress,
+	Typography,
+} from "@mui/material";
 import React from "react";
 import HistoryRoundedIcon from "@mui/icons-material/HistoryRounded";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import moment from "moment/moment";
-import "./home.css";
 
-function History({ history, deleteHistory, clearHistory }) {
+function History({
+	history,
+	deleteHistory,
+	clearHistory,
+	historyLoading,
+	deleteLoading,
+}) {
 	return (
 		<div>
 			<Box sx={{ mt: 2 }} className="historyBox">
@@ -20,17 +33,26 @@ function History({ history, deleteHistory, clearHistory }) {
 					</Box>
 					<Box display={"flex"} alignItems={"center"}>
 						<IconButton>
-							<DeleteOutlineRoundedIcon
-								color="danger"
-								fontSize="small"
-								onClick={() => clearHistory()}
-							/>
+							{deleteLoading == "all" ? (
+								<CircularProgress size={20} color="gray" />
+							) : (
+								<DeleteOutlineRoundedIcon
+									color="danger"
+									fontSize="small"
+									onClick={() => clearHistory()}
+								/>
+							)}
 						</IconButton>
-						<Typography sx={{ color: "#B31312" }}>Clear All</Typography>
+						<Typography sx={{ color: "#F24C3D" }}>Clear All</Typography>
 					</Box>
 				</Box>
 				<Divider color="gray" />
 				<Box className="historyItmBox" sx={{ mt: 2 }}>
+					{historyLoading && (
+						<Box className="historyItem" sx={{ width: "100%" }}>
+							<LinearProgress color="gray" sx={{ width: "100%" }} />
+						</Box>
+					)}
 					{history.length ? (
 						history
 							.slice()
@@ -44,11 +66,15 @@ function History({ history, deleteHistory, clearHistory }) {
 									>
 										<Box display={"flex"} alignItems={"center"}>
 											<IconButton>
-												<DeleteOutlineRoundedIcon
-													color="danger"
-													fontSize="small"
-													onClick={() => deleteHistory(his._id)}
-												/>
+												{deleteLoading == his._id ? (
+													<CircularProgress size={20} color="gray" />
+												) : (
+													<DeleteOutlineRoundedIcon
+														color="danger"
+														fontSize="small"
+														onClick={() => deleteHistory(his._id)}
+													/>
+												)}
 											</IconButton>
 											<Typography
 												variant="body2"
@@ -74,7 +100,7 @@ function History({ history, deleteHistory, clearHistory }) {
 					) : (
 						<Box textAlign={"center"}>
 							<Typography color="secondary" variant="body2">
-								No items in the history!
+								{historyLoading ? "Loading" : "No items in the history!"}
 							</Typography>
 						</Box>
 					)}
